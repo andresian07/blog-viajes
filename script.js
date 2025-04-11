@@ -1,73 +1,115 @@
-// Importamos los datos de las ciudades desde el archivo 'ciudades.js'.
-// Esto nos permite usar la información de cada ciudad en este archivo.
-import { barcelona, roma, paris, londres, islandia } from './ciudades.js';
+/* Estilos generales */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #90a8b3; /* Fondo claro */
+    color: #333; /* Color de texto oscuro */
+}
 
+/* Estilo para la lista de destinos */
+ul {
+    list-style-type: none;
+    padding: 0;
+    background-color: #007BFF; /* Color de fondo del menú */
+    display: flex;
+    justify-content: center;
+    margin: 0;
+}
 
-// Seleccionamos todos los elementos <a> (enlaces) en la página y los guardamos en la variable 'enlaces'.   
+li {
+    margin: 0 15px;
+}
 
-// Esto nos permitirá agregar eventos a cada enlace.
-let enlaces = document.querySelectorAll('a');
-// Seleccionamos el elemento con el id 'titulo' y lo guardamos en 'tituloElemento'.
-// Este elemento se usará para mostrar el título de la ciudad seleccionada.
-let tituloElemento = document.getElementById('title');
-// Seleccionamos el elemento con el id 'subtitulo' y lo guardamos en 'subtituloElemento'.
-// Este elemento se usará para mostrar el subtítulo de la ciudad seleccionada.
-let subtituloElemento = document.getElementById('subtitle');
-// Seleccionamos el elemento con el id 'parrafo' y lo guardamos en 'parrafoElemento'.
-// Este elemento se usará para mostrar la descripción de la ciudad seleccionada.
-let parrafoElemento = document.getElementById('paragraph');
-// Usamos 'forEach' para recorrer cada enlace en la lista de 'enlaces'.
-// Esto nos permite agregar un evento a cada enlace.
-enlaces.forEach(function(enlace) {
-    // Agregamos un evento 'click' a cada enlace.
-    // Cuando el usuario hace clic en un enlace, se ejecuta la función dentro de este bloque.
-    enlace.addEventListener('click', function(event) {
-        // 'event.preventDefault()' evita que el enlace navegue a otra página.
-        // Esto es importante porque queremos manejar el clic de manera personalizada.
-        event.preventDefault();
+a {
+    text-decoration: none;
+    color: white; /* Color de texto en el menú */
+    font-weight: bold;
+    padding: 10px 15px;
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
 
-        // Usamos 'forEach' nuevamente para recorrer todos los enlaces.
-        // Esto nos permite quitar la clase 'active' de todos los enlaces.
-        enlaces.forEach(function(enlace) {
-            // Removemos la clase 'active' de cada enlace.
-            // Esto asegura que solo un enlace esté marcado como activo a la vez.
-            enlace.classList.remove('active');
-        });
+a:hover {
+    background-color: #0056b3; /* Color de fondo al pasar el ratón */
+    border-radius: 5px;
+    color: #fff; /* Color de texto al pasar el ratón */
+    text-decoration: none;
 
-        // Agregamos la clase 'active' al enlace que fue clicado.
-        // Esto puede cambiar el estilo del enlace (por ejemplo, cambiar su color).
-        enlace.classList.add('active');
+}
 
-        // Llamamos a la función 'obtenerContenido' y le pasamos el texto del enlace clicado.
-        // 'trim()' se usa para eliminar espacios en blanco al principio y al final del texto.
-        let contenido = obtenerContenido(enlace.textContent.trim());
+/* Contenedor principal */
+.contenedor {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white; /* Fondo blanco para el contenedor */
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    min-height: 100vh;
+}
 
-        // Actualizamos el contenido del elemento 'tituloElemento' con el título de la ciudad.
-        tituloElemento.textContent = contenido.title;
+/* Títulos */
+#titulo {
+    font-size: 2.5em;
+    color: #007BFF; /* Color del título */
+    text-align: center;
+    margin-bottom: 10px;
+}
 
-        // Actualizamos el contenido del elemento 'subtituloElemento' con el subtítulo de la ciudad.
-        subtituloElemento.textContent = contenido.subtitle;
+#subtitulo {
+    font-size: 1.5em;
+    color: #555; /* Color del subtítulo */
+    text-align: center;
+    margin-bottom: 20px;
+}
 
-        // Actualizamos el contenido del elemento 'parrafoElemento' con la descripción de la ciudad.
-        parrafoElemento.textContent = contenido.paragraph;
-    });
-});
-// Definimos la función 'obtenerContenido' que toma el nombre de la ciudad como argumento.
-// Esta función nos ayuda a obtener el contenido correspondiente a la ciudad seleccionada.
-function obtenerContenido(enlace) {
-    // Usamos un 'switch' para determinar qué ciudad fue seleccionada.
-    // Dependiendo del valor de 'enlace', retornamos el contenido correspondiente.
-    switch (enlace) {
-        case "Barcelona":
-            return barcelona;
-        case "Roma":
-            return roma;
-        case "París":
-            return paris;
-        case "Londres":
-            return londres;
-        case "Islandia":
-            return islandia;
+/* Párrafo */
+#parrafo {
+    font-size: 1.1em;
+    line-height: 1.8;
+    text-align: justify;
+    color: #333; /* Color del texto del párrafo */
+}
+
+/* Estilo de fondo */
+body {
+    background-image: url('ruta/a/tu/imagen_de_fondo.jpg'); /* Cambia la ruta a tu imagen de fondo */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* Estilo para el contenedor de texto */
+.contenedor {
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco con opacidad */
+}
+
+/* Estilo de enlaces dentro del párrafo */
+#parrafo a {
+    color: #007BFF; /* Color de los enlaces */
+    text-decoration: underline;
+}
+
+#parrafo a:hover {
+    text-decoration: none;
+    color: #0056b3; /* Color de los enlaces al pasar el ratón */
+}
+
+@media (max-width: 600px) {
+    ul {
+        flex-direction: column; /* Cambia la dirección de la lista a columna */
+        align-items: center; /* Centra los elementos */
+        background-color: #007BFF; /* Mantiene el color de fondo */
+    }
+
+    li {
+        margin: 10px 0; /* Espaciado vertical entre los elementos de la lista */
+    }
+
+    a {
+        padding: 10px; /* Ajusta el padding para que sea más fácil de tocar en pantallas táctiles */
+        font-size: 1.2em; /* Aumenta el tamaño de la fuente para mejor legibilidad */
     }
 }
-// } // Este código define un módulo que exporta objetos que contienen información sobre varias ciudades.
